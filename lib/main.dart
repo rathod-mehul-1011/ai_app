@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import './screens/home.dart';
+import '../common/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,14 +20,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // Light theme
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
         useMaterial3: true,
       ),
 
       // Dark theme
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        colorScheme: ColorScheme.dark(primary: Colors.deepPurple),
+        colorScheme: ColorScheme.dark(primary: AppColors.primaryColor),
         useMaterial3: true,
       ),
 

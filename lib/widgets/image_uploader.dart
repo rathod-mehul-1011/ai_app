@@ -53,7 +53,11 @@ class _ImageUploaderState extends State<ImageUploader> {
           width: 170,
           child: Column(
             children: [
-              Image.asset('assets/gallery.png'),
+              Image.asset(
+                'assets/gallery.png',
+                height: 35,
+                width: 35,
+              ),
               SizedBox(height: 10),
               SizedBox(
                 width: 140,
