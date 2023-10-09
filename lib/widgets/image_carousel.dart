@@ -23,49 +23,52 @@ class _ImageCarouselState extends State<ImageCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CarouselSlider(
-          items: imgList.map((path) {
-            return Builder(
-              builder: (BuildContext context) {
-                return Image.asset(
-                  path,
-                  fit: BoxFit.contain,
-                );
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 33, vertical: 0),
+      child: Column(
+        children: [
+          CarouselSlider(
+            items: imgList.map((path) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Image.asset(
+                    path,
+                    fit: BoxFit.contain,
+                  );
+                },
+              );
+            }).toList(),
+            options: CarouselOptions(
+              height: 200.0,
+              enlargeCenterPage: true,
+              viewportFraction: 1,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  _current = index;
+                  widget.carouselNotifier.value = index;
+                });
               },
-            );
-          }).toList(),
-          options: CarouselOptions(
-            height: 200.0,
-            enlargeCenterPage: true,
-            viewportFraction: 1,
-            onPageChanged: (index, reason) {
-              setState(() {
-                _current = index;
-                widget.carouselNotifier.value = index;
-              });
-            },
+            ),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: imgList.map((assetPath) {
-            int index = imgList.indexOf(assetPath);
-            return Container(
-              width: 8.0,
-              height: 8.0,
-              margin: EdgeInsets.symmetric(vertical: 6, horizontal: 2),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: _current == index
-                    ? Color.fromRGBO(66, 112, 235, 1)
-                    : Color.fromRGBO(179, 199, 248, 1),
-              ),
-            );
-          }).toList(),
-        ),
-      ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: imgList.map((assetPath) {
+              int index = imgList.indexOf(assetPath);
+              return Container(
+                width: _current == index ? 8 : 6,
+                height: _current == index ? 8 : 6,
+                margin: EdgeInsets.symmetric(vertical: 6, horizontal: 2),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: _current == index
+                      ? Color.fromRGBO(66, 112, 235, 1)
+                      : Color.fromRGBO(179, 199, 248, 1),
+                ),
+              );
+            }).toList(),
+          ),
+        ],
+      ),
     );
   }
 }

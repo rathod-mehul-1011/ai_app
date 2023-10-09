@@ -19,11 +19,12 @@ class FeatureTile extends StatefulWidget {
 }
 
 class _FeatureTileState extends State<FeatureTile> {
-  String currentDesc = '';
+  String currentTitle = '', currentDesc = '';
 
   @override
   void initState() {
     super.initState();
+    currentTitle = featureList[widget.carouselNotifier.value].title;
     currentDesc = featureList[widget.carouselNotifier.value].desc;
     widget.carouselNotifier.addListener(_updateFeatureTile);
   }
@@ -37,22 +38,33 @@ class _FeatureTileState extends State<FeatureTile> {
   void _updateFeatureTile() {
     // React to changes, for instance:
     setState(() {
+      currentTitle = featureList[widget.carouselNotifier.value].title;
       currentDesc = featureList[widget.carouselNotifier.value].desc;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 17, vertical: 0),
-          child: RichText(
+    List<String> words = currentTitle.split(' ');
+
+    String firstWord = words.first;
+    String middleSentence = words.sublist(1, words.length - 1).join(' ');
+    String lastWord = words.last;
+
+    return Container(
+      height: 100,
+      margin: EdgeInsets.symmetric(
+        horizontal: widget.carouselNotifier.value == 2 ? 0 : 62,
+        vertical: 0,
+      ),
+      child: Column(
+        children: [
+          RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: 'Remove ',
+                  text: '$firstWord ',
                   style: TextStyle(
                     color: AppColors.heliotrope,
                     fontWeight: FontWeight.w700,
@@ -60,7 +72,7 @@ class _FeatureTileState extends State<FeatureTile> {
                   ),
                 ),
                 TextSpan(
-                  text: 'unwanted things in',
+                  text: middleSentence,
                   style: TextStyle(
                     color: isDarkMode(context)
                         ? Colors.white
@@ -70,7 +82,7 @@ class _FeatureTileState extends State<FeatureTile> {
                   ),
                 ),
                 TextSpan(
-                  text: ' seconds',
+                  text: ' $lastWord',
                   style: TextStyle(
                     color: AppColors.shockingPink,
                     fontWeight: FontWeight.w700,
@@ -80,21 +92,20 @@ class _FeatureTileState extends State<FeatureTile> {
               ],
             ),
           ),
-        ),
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 46, vertical: 0),
-          padding: EdgeInsets.only(top: 10),
-          child: Text(
-            currentDesc,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: AppColors.emperor,
-              fontWeight: FontWeight.w400,
-              fontSize: 7,
+          Container(
+            margin: EdgeInsets.only(top: 12),
+            child: Text(
+              currentDesc,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: AppColors.emperor,
+                fontWeight: FontWeight.w400,
+                fontSize: 7,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

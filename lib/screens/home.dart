@@ -16,15 +16,15 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 43),
+          padding: EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 80),
+              SizedBox(height: 100),
               FeatureTile(carouselNotifier: carouselNotifier),
-              SizedBox(height: 49),
+              SizedBox(height: 50),
               ImageUploader(),
-              SizedBox(height: 49),
+              SizedBox(height: 60),
               ImageCarousel(carouselNotifier: carouselNotifier),
             ],
           ),
