@@ -1,12 +1,18 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ai_app/provider/theme_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import './screens/home.dart';
-import '../common/colors.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider<ThemeNotifier>(
+      create: (_) => ThemeNotifier(lightTheme), // Default theme is lightTheme
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -15,24 +21,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
+
     return MaterialApp(
       title: 'AI App',
       debugShowCheckedModeBanner: false,
       // Light theme
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
-        useMaterial3: true,
-      ),
+      theme: themeNotifier.getTheme(),
+      themeMode: ThemeMode.system,
 
-      // Dark theme
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        colorScheme: ColorScheme.dark(primary: AppColors.primaryColor),
-        useMaterial3: true,
-      ),
-
-      // Determines which theme to use
-      themeMode: ThemeMode.light,
       home: HomeScreen(),
     );
   }
