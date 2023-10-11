@@ -39,7 +39,6 @@ class _ImageCarouselState extends State<ImageCarousel> {
               );
             }).toList(),
             options: CarouselOptions(
-              height: 200.0,
               enlargeCenterPage: true,
               viewportFraction: 1,
               onPageChanged: (index, reason) {
@@ -57,7 +56,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
               return Container(
                 width: _current == index ? 8 : 6,
                 height: _current == index ? 8 : 6,
-                margin: EdgeInsets.symmetric(vertical: 6, horizontal: 2),
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 2),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: _current == index

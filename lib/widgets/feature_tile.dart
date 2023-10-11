@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:ai_app/common/data.dart';
 import 'package:flutter/material.dart';
 
 import '../common/colors.dart';
-import '../common/theme_utils.dart';
+import '../common/common.dart';
+import '../common/data.dart';
 
 class FeatureTile extends StatefulWidget {
   final ValueNotifier<int> carouselNotifier;
@@ -52,9 +52,8 @@ class _FeatureTileState extends State<FeatureTile> {
     String lastWord = words.last;
 
     return Container(
-      height: 100,
       margin: EdgeInsets.symmetric(
-        horizontal: widget.carouselNotifier.value == 2 ? 0 : 62,
+        horizontal: widget.carouselNotifier.value == 2 ? 0 : 40,
         vertical: 0,
       ),
       child: Column(
@@ -68,7 +67,7 @@ class _FeatureTileState extends State<FeatureTile> {
                   style: TextStyle(
                     color: AppColors.heliotrope,
                     fontWeight: FontWeight.w700,
-                    fontSize: 28,
+                    fontSize: 28 * scaleFactor(context),
                   ),
                 ),
                 TextSpan(
@@ -78,7 +77,7 @@ class _FeatureTileState extends State<FeatureTile> {
                         ? Colors.white
                         : AppColors.mineShaft,
                     fontWeight: FontWeight.w700,
-                    fontSize: 28,
+                    fontSize: 28 * scaleFactor(context),
                   ),
                 ),
                 TextSpan(
@@ -86,7 +85,7 @@ class _FeatureTileState extends State<FeatureTile> {
                   style: TextStyle(
                     color: AppColors.shockingPink,
                     fontWeight: FontWeight.w700,
-                    fontSize: 28,
+                    fontSize: 28 * scaleFactor(context),
                   ),
                 ),
               ],

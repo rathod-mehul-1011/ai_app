@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'dart:io';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
@@ -10,7 +9,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:dotted_border/dotted_border.dart';
 
 import '../common/colors.dart';
-import '../common/theme_utils.dart';
+import '../common/common.dart';
+import '../screens/image_viewer.dart';
 
 class ImageUploader extends StatefulWidget {
   const ImageUploader({super.key});
@@ -29,11 +29,18 @@ class _ImageUploaderState extends State<ImageUploader> {
     setState(() {
       _pickedImage = pickedImage;
     });
+    if (_pickedImage != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ImageViewer(image: _pickedImage!),
+        ),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    log('_pickedImage ----- $_pickedImage');
     return DottedBorder(
       borderType: BorderType.RRect,
       radius: Radius.circular(13.0),
@@ -50,7 +57,6 @@ class _ImageUploaderState extends State<ImageUploader> {
           borderRadius: BorderRadius.circular(10),
         ),
         child: SizedBox(
-          width: 170,
           child: Column(
             children: [
               Image.asset(
