@@ -29,6 +29,7 @@ class _ImageUploaderState extends State<ImageUploader> {
     setState(() {
       _pickedImage = pickedImage;
     });
+    if (!context.mounted) return;
     if (_pickedImage != null) {
       Navigator.push(
         context,
