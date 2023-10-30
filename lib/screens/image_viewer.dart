@@ -45,18 +45,18 @@ class ImageViewer extends StatelessWidget {
                 Text(
                   "Edited",
                   style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 12 * scaleFactor(context),
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 35 * scaleFactor(context)),
                 Image.file(
                   image,
                   height: 412 * scaleFactor(context),
                   width: 260 * scaleFactor(context),
                   fit: BoxFit.cover,
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 39 * scaleFactor(context)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
